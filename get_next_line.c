@@ -15,11 +15,18 @@
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*buffer = NULL;
 	char		*line;
 
-	if (fd < 0 || fd > INT_MAX || BUFFER_SIZE < 0 || BUFFER_SIZE > INT_MAX)
+	if (fd < 0 || fd > INT_MAX || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX)
 		return (NULL);
+	if (read(fd, 0, 0) == -1)
+	{
+		if (buffer)
+			free(buffer);
+			buffer = NULL;
+		return (NULL);
+	}
 	line = NULL;
 	if (!buffer)
 	{
@@ -29,14 +36,21 @@ char	*get_next_line(int fd)
 		buffer[BUFFER_SIZE] = '\0';
 		*buffer = '\0';
 	}
-	// printf("	out: %s\n", buffer);
 	while (buffer)
 	{
 		buffer = ft_read(fd, buffer);
-		// printf("	in: %s\n", buffer);
 		line = ft_strjoin(line, buffer);
-		if (line == NULL || *(line + ft_getlen(line) - 1) == '\n')
+		if (*(line + ft_strlen(line) - 1) == '\n')
 			return (line);
+		if (line == NULL)
+		{
+			if (buffer)
+			{
+				free(buffer);
+				buffer = NULL;
+			}
+			return (NULL);
+		}
 	}
 	return (line);
 }

@@ -13,16 +13,28 @@
 #include "get_next_line.h"
 #include <stdio.h>
 
-int	ft_getlen(char *str)
+int	ft_strlen(char *str)
 {
 	int	len;
 
 	len = 0;
 	if (!str)
 		return (0);
-	while (*(str + len) != '\n' && *(str + len) != '\0')
+	while (*(str + len))
 		len++;
-	return (len + (*(str + len) == '\n'));
+	return (len);
+}
+
+int	ft_bufferlen(char *buffer)
+{
+	int	len;
+
+	len = 0;
+	if (!buffer)
+		return (0);
+	while (*(buffer + len) != '\n' && *(buffer + len) != '\0')
+		len++;
+	return (len + (*(buffer + len) == '\n'));
 }
 
 char	*ft_strncpy(char *dest, char *src, int n)
@@ -46,8 +58,8 @@ char	*ft_strjoin(char *line, char *buffer)
 
 	if (line == NULL && buffer == NULL)
 		return (NULL);
-	l_line = ft_getlen(line);
-	l_buffer = ft_getlen(buffer);
+	l_line = ft_strlen(line);
+	l_buffer = ft_bufferlen(buffer);
 	str = (char *)malloc(sizeof(char) * (l_line + l_buffer + 1));
 	if (!str)
 		return (NULL);
@@ -61,20 +73,16 @@ char	*ft_read(int fd, char *buffer)
 {
 	int	rd;
 
-	rd = 0;
-	
-	while (*(buffer + rd) && *(buffer + rd) != '\n')
-		rd++;
-	if (*(buffer + rd) == '\n')
+	rd = ft_bufferlen(buffer);
+	if (rd && *(buffer + rd))
 	{
-		rd++;
-		ft_strncpy(buffer, buffer + rd, BUFFER_SIZE - rd);
-		rd = BUFFER_SIZE;
+		ft_strncpy(buffer, buffer + rd, ft_strlen(buffer));
+		rd = ft_strlen(buffer);
 	}
 	else
 	{
 		rd = read(fd, buffer, BUFFER_SIZE);
-		if (rd <= 0)
+		if (rd == 0)
 		{
 			free(buffer);
 			return (NULL);

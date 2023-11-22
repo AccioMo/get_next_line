@@ -20,21 +20,38 @@ int	main(void)
 	char	*str;
 
 	fd = open("file", 0);
+	/*		line: 1		*/
 	str = get_next_line(fd);
 	printf("%s", str);
 	free(str);
+	/*		line: 2		*/
 	str = get_next_line(fd);
 	printf("%s", str);
 	free(str);
-	// str = get_next_line(fd);
-	// printf("%s", str);
-	// free(str);
-	// str = get_next_line(fd);
-	// printf("%s", str);
-	// free(str);
-	// str = get_next_line(fd);
-	// printf("%s", str);
-	// free(str);
+	/*		line: 3		*/
+	str = get_next_line(fd);
+	printf("%s", str);
+	free(str);
+	/*		line: 4		*/
+	str = get_next_line(fd);
+	printf("%s", str);
+	free(str);
+	/*		line: 5		*/
+	str = get_next_line(fd);
+	printf("%s", str);
+	free(str);
+	/*		line: 6		*/
+	str = get_next_line(fd);
+	printf("%s", str);
+	free(str);
+	/*		line: 7		*/
+	str = get_next_line(fd);
+	printf("%s", str);
+	free(str);
+	/*		line: 8		*/
+	str = get_next_line(fd);
+	printf("%s", str);
+	free(str);
 	// system("leaks a.out");
 	return (0);
 }

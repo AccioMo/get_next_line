@@ -4,16 +4,16 @@
 #include <stdio.h>
  
 // function with static variable
-int fun()
+void fun()
 {
-    static int count = 0;
-    static int count1;
-	static char c[10];
-    count++;
-    return count;
+    static int count;
+    count = 2;
 }
  
 int main()
 {
+    static int count = 0;
+	fun();
+	printf("%d\n", count);
     return 0;
 }

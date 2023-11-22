@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 10
 # endif
 
 # include <stdlib.h>
@@ -25,6 +25,7 @@ char	*get_next_line(int fd);
 char	*ft_strncpy(char *dest, char *src, int n);
 char	*ft_strjoin(char *line, char *buffer);
 char	*ft_read(int fd, char *buffer);
-int		ft_getlen(char *str);
+int		ft_strlen(char *str);
+int		ft_bufferlen(char *str);
 
 #endif
