@@ -19,10 +19,12 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <limits.h>
 
 char	*get_next_line(int fd);
-char	*get_line(char *line, char *buffer, int fd);
+char	*ft_strncpy(char *dest, char *src, int n);
 char	*ft_strjoin(char *line, char *buffer);
+char	*ft_read(int fd, char *buffer);
 int		ft_getlen(char *str);
 
 #endif

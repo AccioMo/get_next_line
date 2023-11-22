@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"get_next_line.h": "c",
-		"MAIN.C": "cpp"
+		"MAIN.C": "cpp",
+		"stdio.h": "c"
 	}
 }

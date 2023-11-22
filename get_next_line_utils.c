@@ -25,15 +25,16 @@ int	ft_getlen(char *str)
 	return (len + (*(str + len) == '\n'));
 }
 
-static char	*ft_strncpy(char *dest, char *src, int n)
+char	*ft_strncpy(char *dest, char *src, int n)
 {
-	while (n > 0)
+	while (n > 0 && *src)
 	{
 		*dest = *src;
 		dest++;
 		src++;
 		n--;
 	}
+	*dest = '\0';
 	return (dest);
 }
 
@@ -43,12 +44,14 @@ char	*ft_strjoin(char *line, char *buffer)
 	int		l_line;
 	int		l_buffer;
 
+	if (line == NULL && buffer == NULL)
+		return (NULL);
 	l_line = ft_getlen(line);
 	l_buffer = ft_getlen(buffer);
 	str = (char *)malloc(sizeof(char) * (l_line + l_buffer + 1));
 	if (!str)
 		return (NULL);
-	*ft_strncpy(ft_strncpy(str, line, l_line), buffer, l_buffer) = '\0';
+	ft_strncpy(ft_strncpy(str, line, l_line), buffer, l_buffer);
 	if (line)
 		free(line);
 	return (str);
@@ -58,30 +61,25 @@ char	*ft_read(int fd, char *buffer)
 {
 	int	rd;
 
-	while (buffer && *(buffer + rd) != '\n')
-		
+	rd = 0;
+	
+	while (*(buffer + rd) && *(buffer + rd) != '\n')
+		rd++;
+	if (*(buffer + rd) == '\n')
+	{
+		rd++;
+		ft_strncpy(buffer, buffer + rd, BUFFER_SIZE - rd);
+		rd = BUFFER_SIZE;
+	}
 	else
+	{
 		rd = read(fd, buffer, BUFFER_SIZE);
-	if (rd < BUFFER_SIZE)
-	{
-		while (rd < BUFFER_SIZE)
-			*(buffer + rd++) = '\0';
+		if (rd <= 0)
+		{
+			free(buffer);
+			return (NULL);
+		}
 	}
-	if (rd == 0)
-	{
-		free(buffer);
-		buffer = NULL;
-	}
+	*(buffer + rd) = '\0';
 	return (buffer);
-}
-
-char	*get_line(char *line, char *buffer, int fd)
-{
-	while (ft_read(fd, buffer))
-	{
-		line = ft_strjoin(line, buffer);
-		if (*(line + ft_getlen(line) - 1) == '\n' || line == NULL)
-			return (line);
-	}
-	return (line);
 }

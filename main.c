@@ -17,12 +17,24 @@
 int	main(void)
 {
 	int	fd;
+	char	*str;
 
 	fd = open("file", 0);
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	printf("%s", get_next_line(fd));
-	
+	str = get_next_line(fd);
+	printf("%s", str);
+	free(str);
+	str = get_next_line(fd);
+	printf("%s", str);
+	free(str);
+	// str = get_next_line(fd);
+	// printf("%s", str);
+	// free(str);
+	// str = get_next_line(fd);
+	// printf("%s", str);
+	// free(str);
+	// str = get_next_line(fd);
+	// printf("%s", str);
+	// free(str);
+	// system("leaks a.out");
 	return (0);
 }
