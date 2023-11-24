@@ -6,11 +6,11 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 11:42:53 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/11/24 13:24:42 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2023/11/21 17:13:26 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	ft_strlen(char *str)
 {
