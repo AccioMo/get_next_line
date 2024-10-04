@@ -6,7 +6,7 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 20:44:10 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/11/20 23:52:25 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2024/10/04 16:45:35 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 
 char	*get_next_line(int fd);
 char	*ft_strncpy(char *dest, char *src, int n);
-char	*ft_strjoin(char *line, char *buffer);
+char	*ft_gnl_strjoin(char *line, char *buffer);
 char	*ft_read(int fd, char *buffer);
-int		ft_strlen(char *str);
+int		ft_gnl_strlen(char *str);
 int		ft_bufferlen(char *str);
 
 #endif

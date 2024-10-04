@@ -6,13 +6,13 @@
 /*   By: mzeggaf <mzeggaf@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 11:42:53 by mzeggaf           #+#    #+#             */
-/*   Updated: 2023/11/24 13:24:42 by mzeggaf          ###   ########.fr       */
+/*   Updated: 2024/10/04 16:47:51 by mzeggaf          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *str)
+int	ft_gnl_strlen(char *str)
 {
 	int	len;
 
@@ -49,7 +49,7 @@ char	*ft_strncpy(char *dest, char *src, int n)
 	return (dest);
 }
 
-char	*ft_strjoin(char *line, char *buffer)
+char	*ft_gnl_strjoin(char *line, char *buffer)
 {
 	char	*str;
 	int		l_line;
@@ -57,7 +57,7 @@ char	*ft_strjoin(char *line, char *buffer)
 
 	if (buffer == NULL)
 		return (line);
-	l_line = ft_strlen(line);
+	l_line = ft_gnl_strlen(line);
 	l_buffer = ft_bufferlen(buffer);
 	str = (char *)malloc(sizeof(char) * (l_line + l_buffer + 1));
 	if (!str)
@@ -74,7 +74,7 @@ char	*ft_read(int fd, char *buffer)
 
 	rd = ft_bufferlen(buffer);
 	if (*(buffer + rd))
-		ft_strncpy(buffer, buffer + rd, ft_strlen(buffer));
+		ft_strncpy(buffer, buffer + rd, ft_gnl_strlen(buffer));
 	else
 	{
 		rd = read(fd, buffer, BUFFER_SIZE);
